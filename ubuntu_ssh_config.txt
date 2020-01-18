@@ -1,0 +1,23 @@
+server版ubuntu ssh config步骤：
+1.安装git：sudo apt-get install git git-core git-gui git-doc git-svn git-cvs gitweb gitk git-email git-daemon-run git-el git-arch
+2.设置用户名和email
+git config --global user.name "user name"
+git config --global user.email "user email address"
+这步执行完会多出id_rsa id_rsa.pub文件
+3.检查ssh:ssh -T git@github.com
+看到：Warning: Permanently added ‘github.com,204.232.175.90’ (RSA) to the list of known hosts. 
+Permission denied (publickey).
+4.备份id_rsa.pub到共享文件夹下 sudo cp ~/.ssh/id_rsa.pub ./ssh_rsa
+5.在windows下打开id_rsa.pub文件，在GitHub账号添加SSH Keys
+6.再次执行ssh:ssh -T git@github.com
+看到：Hi 你的用户名! You’ve successfully authenticated, but GitHub does not provide shell access.
+config成功
+---------------------------------------------------------------------------
+此时，发现github上已有了SSH keys
+注1：之前在设置公钥时如果设置了密码，在该步骤会要求输入密码，那么，输入当时设置的密码即可。
+注2：通过以上的设置之后，就能够通过SSH的方式，直接使用Git命令访问GitHub托管服务器了
+注3：若在服务器添加完公钥后报错
+sign_and_send_pubkey: signing failed: agent refused operation
+执行：
+eval "$(ssh-agent -s)"
+ssh-add

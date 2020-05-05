@@ -1,4 +1,4 @@
-server版ubuntu ssh config步骤：
+server版ubuntu git ssh config步骤：
 1.安装git：sudo apt-get install git git-core git-gui git-doc git-svn git-cvs gitweb gitk git-email git-daemon-run git-el git-arch
 2.设置用户名和email
 git config --global user.name "user name"
